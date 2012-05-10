@@ -1,0 +1,46 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+allprojects {
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+}
+
+version = '1.0.0'
+group = 'com.redhat.qe'
+
+sourceSets {
+    main {
+        java {
+            srcDirs "src"
+        }
+    }
+}
+
+eclipse {
+    classpath {
+        defaultOutputDir = file('build')
+    }
+}
+
+repositories {
+    mavenCentral()
+    [
+        'https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads',
+        'http://clojars.org/repo',
+        'http://download.java.net/maven/2/',
+        'http://repository.codehaus.org',
+        'http://snapshots.repository.codehaus.org'
+    ].each { repo ->  
+        maven {
+            url repo
+        }
+    }
+}
+
+dependencies {
+}
+
+jar {
+}
